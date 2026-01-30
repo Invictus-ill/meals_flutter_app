@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:meals_flutter_app/data/dummy_data.dart';
-import 'package:meals_flutter_app/main.dart';
 import 'package:meals_flutter_app/screens/categories.dart';
 import 'package:meals_flutter_app/screens/meals.dart';
 
@@ -31,6 +30,7 @@ class _TabsScreenState extends State<TabsScreen> {
       appBar: AppBar(title: Text(appBarTitle)),
       body: mainContent,
       bottomNavigationBar: BottomNavigationBar(
+        currentIndex: selectedIndex,
         onTap: (index) {
           setState(() {
             selectedIndex = index;
