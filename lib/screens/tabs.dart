@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:meals_flutter_app/models/meal.dart';
 import 'package:meals_flutter_app/providers/favorites_provider.dart';
 import 'package:meals_flutter_app/providers/filters_provider.dart';
-import 'package:meals_flutter_app/providers/meals_provider.dart';
 import 'package:meals_flutter_app/screens/categories.dart';
 import 'package:meals_flutter_app/screens/filters.dart';
 import 'package:meals_flutter_app/screens/meals.dart';
@@ -42,24 +40,7 @@ class _TabsScreenState extends ConsumerState<TabsScreen> {
   Widget build(BuildContext context) {
     Widget mainContent;
 
-    List<Meal> meals = ref.watch(mealsProvider);
-    Map<Filters, bool> activeFilters = ref.watch(filtersProvider);
-
-    final availableMeals = meals.where((meal) {
-      if (!meal.isGlutenFree && activeFilters[Filters.glutenFree]!) {
-        return false;
-      }
-      if (!meal.isLactoseFree && activeFilters[Filters.lactoseFree]!) {
-        return false;
-      }
-      if (!meal.isVegan && activeFilters[Filters.vegan]!) {
-        return false;
-      }
-      if (!meal.isVegetarian && activeFilters[Filters.vegetarian]!) {
-        return false;
-      }
-      return true;
-    }).toList();
+    final availableMeals = ref.watch(availableMealsProvider);
 
     if (selectedIndex == 1) {
       final favoriteMeals = ref.watch(favoriteMealsProvider);
