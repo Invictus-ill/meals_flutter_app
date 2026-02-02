@@ -7,7 +7,7 @@ class FiltersScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final activeFilters = ref.watch(FiltersProvider);
+    final activeFilters = ref.watch(filtersProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -24,7 +24,7 @@ class FiltersScreen extends ConsumerWidget {
             value: activeFilters[Filters.glutenFree]!,
             onChanged: (bool isChecked) {
               ref
-                  .read(FiltersProvider.notifier)
+                  .read(filtersProvider.notifier)
                   .setFilter(Filters.glutenFree, isChecked);
             },
             title: Text(
@@ -41,7 +41,7 @@ class FiltersScreen extends ConsumerWidget {
             value: activeFilters[Filters.lactoseFree]!,
             onChanged: (bool isChecked) {
               ref
-                  .read(FiltersProvider.notifier)
+                  .read(filtersProvider.notifier)
                   .setFilter(Filters.lactoseFree, isChecked);
             },
             title: Text(
@@ -58,7 +58,7 @@ class FiltersScreen extends ConsumerWidget {
             value: activeFilters[Filters.vegetarian]!,
             onChanged: (bool isChecked) {
               ref
-                  .read(FiltersProvider.notifier)
+                  .read(filtersProvider.notifier)
                   .setFilter(Filters.vegetarian, isChecked);
             },
             title: Text(
@@ -75,7 +75,7 @@ class FiltersScreen extends ConsumerWidget {
             value: activeFilters[Filters.vegan]!,
             onChanged: (bool isChecked) {
               ref
-                  .read(FiltersProvider.notifier)
+                  .read(filtersProvider.notifier)
                   .setFilter(Filters.vegan, isChecked);
             },
             title: Text(
