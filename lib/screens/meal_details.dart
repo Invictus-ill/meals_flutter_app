@@ -38,9 +38,17 @@ class MealDetailsScreen extends ConsumerWidget {
                     : 'Meal removed from favorites',
               );
             },
-            icon: isFavorite
-                ? Icon(Icons.favorite)
-                : Icon(Icons.favorite_border_outlined),
+            icon: AnimatedSwitcher(
+              duration: const Duration(milliseconds: 300),
+              transitionBuilder: (child, animation) => RotationTransition(
+                turns: Tween(begin: 0.5, end: 1.0).animate(animation),
+                child: child,
+              ),
+              child: Icon(
+                isFavorite ? Icons.star : Icons.star_border_outlined,
+                key: ValueKey(isFavorite),
+              ),
+            ),
           ),
         ],
       ),
@@ -48,9 +56,12 @@ class MealDetailsScreen extends ConsumerWidget {
         children: [
           Column(
             children: [
-              FadeInImage(
-                placeholder: MemoryImage(kTransparentImage),
-                image: NetworkImage(meal.imageUrl),
+              Hero(
+                tag: meal.id,
+                child: FadeInImage(
+                  placeholder: MemoryImage(kTransparentImage),
+                  image: NetworkImage(meal.imageUrl),
+                ),
               ),
               const SizedBox(height: 16),
               Text(
